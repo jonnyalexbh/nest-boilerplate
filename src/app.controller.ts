@@ -11,21 +11,23 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('users')
-  getUsers(
+  @Get('greetings')
+  getGreetings(
     @Query('limit') limit = 10,
     @Query('offset') offset = 20,
     @Query('brand') brand = 'XYZ',
   ) {
-    return { message: `Users limit ${limit}, offset ${offset} brand ${brand}` };
+    return {
+      message: `greetings limit ${limit}, offset ${offset} brand ${brand}`,
+    };
   }
 
-  @Get('users/:id')
-  getUser(@Param('id') userId: number) {
-    return { message: `GET user with id ${userId}` };
+  @Get('greetings/:id')
+  getUser(@Param('id') greetingId: number) {
+    return { message: `GET greeting with id ${greetingId}` };
   }
 
-  @Post('users')
+  @Post('greetings')
   getGreeting(@Body() request: Request) {
     return request;
   }
