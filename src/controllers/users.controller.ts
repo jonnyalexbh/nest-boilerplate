@@ -6,10 +6,12 @@ import {
   Post,
   Put,
   Delete,
+  // ParseIntPipe,
   // HttpStatus,
   // HttpCode,
 } from '@nestjs/common';
 
+import { ParseIntPipe } from '../commons/parse-int.pipe';
 import { UsersService } from '../services/users.service';
 
 @Controller('users')
@@ -24,8 +26,8 @@ export class UsersController {
 
   @Get(':id')
   // @HttpCode(HttpStatus.FORBIDDEN)
-  getById(@Param('id') id: number) {
-    return this.usersService.findOne(+id);
+  getById(@Param('id', ParseIntPipe) id: number) {
+    return this.usersService.findOne(id);
     // return { message: `Get user with id ${userId}` };
   }
 
