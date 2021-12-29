@@ -43,6 +43,7 @@ export class UsersController {
 
   @Delete(':id')
   remove(@Param('id') userId: number) {
-    return { message: `Delete user with id ${userId}` };
+    return this.usersService.remove(+userId);
+    // return { message: `Delete user with id ${userId}` };
   }
 }
