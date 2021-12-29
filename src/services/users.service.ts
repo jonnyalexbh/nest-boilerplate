@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from '../entities/users.entity';
+import { CreateUserDto, UpdateUserDto } from '../dtos/users.dto';
 
 @Injectable()
 export class UsersService {
@@ -31,7 +32,7 @@ export class UsersService {
     return user;
   }
 
-  create(payload: any) {
+  create(payload: CreateUserDto) {
     this.counterId = this.counterId++;
     const newUser = {
       id: this.counterId++,
@@ -41,7 +42,7 @@ export class UsersService {
     return newUser;
   }
 
-  update(id: number, payload: any) {
+  update(id: number, payload: UpdateUserDto) {
     const user = this.findOne(id);
     if (user) {
       const index = this.users.findIndex((item) => item.id === id);

@@ -11,6 +11,7 @@ import {
   // HttpCode,
 } from '@nestjs/common';
 
+import { CreateUserDto, UpdateUserDto } from '../dtos/users.dto';
 import { ParseIntPipe } from '../commons/parse-int.pipe';
 import { UsersService } from '../services/users.service';
 
@@ -32,13 +33,13 @@ export class UsersController {
   }
 
   @Post()
-  create(@Body() payload: any) {
+  create(@Body() payload: CreateUserDto) {
     return this.usersService.create(payload);
     // return { payload };
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() payload: any) {
+  update(@Param('id') id: number, @Body() payload: UpdateUserDto) {
     return this.usersService.update(+id, payload);
     // return { id, payload };
   }
